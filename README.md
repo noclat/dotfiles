@@ -13,7 +13,7 @@ make tools
 make apache username=<username> email=<email>
 
 # Configure Git, create SSH key and push public key to Github
-make github username=<username> email=<email>
+make git username=<username> email=<email>
 ```
 
 ## Misc

@@ -33,12 +33,12 @@ tools:
 	cp {.gitconfig,.zshrc,.vimrc} ~/
 	source ~/.zshrc
 	@ echo "Installing Homebrew:"
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	hash brew 2>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	@ echo "Installing watch command:"
 	brew install watch
 	sudo mv /usr/local/Cellar/watch/*/bin/watch /usr/local/bin
 	@ echo "Installing Node.js:"
-	brew install node
+	hash node 2>/dev/null || brew install node
 	@ echo "Looking for XCode Command Line Tools:"
 	@ gcc
 	@ echo "Done."
