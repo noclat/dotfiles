@@ -1,4 +1,4 @@
-.PHONY: apps tools apache git
+.PHONY: check all apps tools apache git
 
 apps:
 	@ echo "Downloading apps:"
@@ -8,6 +8,16 @@ apps:
 	( cd ~/Downloads && curl -O https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg )
 	@ echo "Done."
 	@ echo "-- Please manually install iTerm and Atom before continuing."
+
+check:
+ifeq ($(and $(username),$(email)),)
+	@ $(error "Missing arguments username and/or email.")
+endif
+
+all:
+	@ make tools
+	@ make apache
+	@ make git
 
 tools:
 	@ echo "Initializing Atom config:"
@@ -33,9 +43,8 @@ tools:
 	@ gcc
 	@ echo "Done."
 
-username = "<username>"
-email = "you@example.com"
 apache:
+	@ make check
 	@ echo "Creating ~/Localhost:"
 	mkdir -p ~/Localhost
 	@ echo "Configuring Apache:"
@@ -55,6 +64,7 @@ apache:
 	@ echo "-- Please check if php5_module is commented in /etc/apache2/httpd.conf"
 
 git:
+	@ make check
 	@ echo "Configuring Git:"
 	git config --global user.name ${username}
 	git config --global user.email ${email}
