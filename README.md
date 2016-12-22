@@ -2,7 +2,7 @@
 # Download iTerm, Atom, Chrome and Sequel Pro
 make apps
 
-# Install Oh My ZSH, Homebrew, watch command, and XCode Command Line Tools
+# Install Oh My ZSH, Homebrew, watch command, and XCode CLI and Node.js
 make tools
 
 # Configure Apache, install PHP 7 and download MySQL

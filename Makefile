@@ -27,6 +27,8 @@ tools:
 	@ echo "Installing watch command:"
 	brew install watch
 	sudo mv /usr/local/Cellar/watch/*/bin/watch /usr/local/bin
+	@ echo "Installing Node.js:"
+	brew install node
 	@ echo "Looking for XCode Command Line Tools:"
 	@ gcc
 	@ echo "Done."
@@ -45,11 +47,12 @@ apache:
 	@ sudo sed -i.bak "s/^.*date\.timezone =.*/date.timezone = \"Europe\/Paris\"/g" /etc/php.ini
 	@ echo "Installing PHP 7:"
 	curl -s http://php-osx.liip.ch/install.sh | bash -s 7.0
-	@ echo "Downloading MySQL 5.6.35:"
-	( cd ~/Downloads && curl -O http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.35-macos10.12-x86_64.dmg )
+	@ echo "Installing MySQL 5.6:"
+	brew install homebrew/versions/mysql56
+	@ echo "Making MyQSL launch on boot:"
+	ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 	@ echo "Done."
 	@ echo "-- Please check if php5_module is commented in /etc/apache2/httpd.conf"
-	@ echo "-- Please manually install MySQL."
 
 git:
 	@ echo "Configuring Git:"
