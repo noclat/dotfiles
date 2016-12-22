@@ -1,0 +1,44 @@
+"*":
+  core:
+    disabledPackages: [
+      "dev-live-reload"
+      "language-csharp"
+      "language-clojure"
+      "language-c"
+      "about"
+      "language-go"
+      "language-hyperlink"
+      "language-java"
+      "language-less"
+      "language-objective-c"
+      "language-perl"
+      "language-python"
+      "language-ruby-on-rails"
+      "language-ruby"
+      "welcome"
+      "metrics"
+      "linter-coffeescript"
+      "open-on-github"
+      "minimap"
+      "background-tips"
+      "language-coffee-script"
+    ]
+    openEmptyEditorOnStart: false
+  docblockr: {}
+  editor:
+    fontFamily: "Operator Mono"
+    fontSize: 17
+    invisibles: {}
+    softTabs: false
+  "exception-reporting":
+    userId: "76f26d32-b835-c2d0-c80d-b92e5ccd2108"
+  minimap: {}
+  "remote-edit": {}
+  "remote-sync": {}
+  "tidy-markdown":
+    ensureFirstHeaderIsH1: false
+    runOnSave: false
+  "tree-view":
+    hideVcsIgnoredFiles: false
+  welcome:
+    showOnStartup: false
