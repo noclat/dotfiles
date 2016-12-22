@@ -3,11 +3,10 @@
 .PHONY: apps all tools apache git check
 apps:
 	@ echo "Downloading apps:"
-	( cd ~/Downloads && curl -O https://iterm2.com/downloads/stable/iTerm2-3_0_12.zip )
-	( cd ~/Downloads && curl -O https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg )
-	( cd ~/Downloads && curl -LO https://atom.io/download/mac )
-	( cd ~/Downloads && curl -O https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg )
-	@ echo "Done."
+	( cd ~/Downloads && curl -LO https://iterm2.com/downloads/stable/iTerm2-3_0_12.zip )
+	( cd ~/Downloads && curl -LO https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg )
+	( cd ~/Downloads && curl -LO https://atom-installer.github.com/v1.12.7/atom-mac.zip )
+	( cd ~/Downloads && curl -LO https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg )
 	@ echo "-- Please manually install iTerm and Atom before continuing."
 
 all:
@@ -44,9 +43,9 @@ git:
 	@ echo "-- Please manually add key to Gitlab: https://gitlab.com/profile/keys."
 
 check:
-	ifeq ($(and $(username),$(email)),)
-		@ $(error "Missing arguments username and/or email.")
-	endif
+ifeq ($(and $(username),$(email)),)
+	@ $(error "Missing arguments username and/or email.")
+endif
 
 
 # Terminal
@@ -97,18 +96,20 @@ localhost:
 	@ sed -i.bak "s/<username>/${username}/g" httpd.conf
 	@ sed -i.bak "s/you@example.com/${email}/g" httpd.conf
 	@ rm httpd.conf.bak
-	sudo mv httpd.conf /etc/apache2/
+	sudo cp httpd.conf /etc/apache2/
+	@ echo "Restarting Apache:"
+	sudo apachectl restart
 
 php:
-	@ echo "Setting PHP Timezone:"
-	@ sudo sed -i.bak "s/^.*date\.timezone =.*/date.timezone = \"Europe\/Paris\"/g" /etc/php.ini
 	@ echo "Installing PHP 7:"
 	curl -s http://php-osx.liip.ch/install.sh | bash -s 7.0
+	@ echo "Setting PHP Timezone:"
+	@ sudo sed -i.bak "s/^.*date\.timezone =.*/date.timezone = \"Europe\/Paris\"/g" /usr/local/php5/php.d/99-liip-developer.ini
 	@ echo "-- Please check if php5_module is commented in /etc/apache2/httpd.conf"
 
 mysql:
 	@ echo "Installing MySQL 5.6:"
-	brew install homebrew/versions/mysql56
+	brew install mysql@5.6
 	@ echo "Making MyQSL launch on boot:"
 	ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 
@@ -121,5 +122,5 @@ node:
 # -------------------
 .PHONY: atom_config
 atom_config:
-	@ echo "Initializing Atom config:"
+	@ echo "Copying Atom config:"
 	cp config.cson ~/.atom/@ echo "Done."
