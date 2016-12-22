@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Config
 ZSH_THEME="frisk"
-plugins=(git atom)
+plugins=(git atom thf)
 
 # System
 export EDITOR="/usr/bin/vim"

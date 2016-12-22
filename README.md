@@ -1,5 +1,5 @@
 ```sh
-# Download apps
+# Download iTerm, Atom, Chrome and Sequel Pro
 make apps
 
 # Install Oh My ZSH, Homebrew, watch command, and XCode Command Line Tools
@@ -13,6 +13,6 @@ make github username=<username> email=<email>
 ```
 
 
-# Misc
+## Misc
 - Double click on [Toggle Hidden Files service](Toggle Hidden Files.workflow) to install.
-- https://bjango.com/mac/skalacolor/
+- Download and install https://bjango.com/mac/skalacolor/
