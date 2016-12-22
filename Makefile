@@ -60,8 +60,8 @@ zsh_plugins:
 	@ echo "-- Installing ZSH plugins:"
 	mkdir -p ~/.oh-my-zsh/plugins/atom
 	curl -o ~/.oh-my-zsh/plugins/atom/atom.plugin.zsh https://raw.githubusercontent.com/semperos/oh-my-zsh/master/plugins/atom/atom.plugin.zsh
-	mkdir -p ~/.oh-my-zsh/plugins/thf
-	cp thf.plugin.zsh ~/.oh-my-zsh/plugins/thf/
+	mkdir -p ~/.oh-my-zsh/plugins/custom
+	cp custom.plugin.zsh ~/.oh-my-zsh/plugins/custom/
 
 zsh_config:
 	@ echo "-- Importing configuration files:"

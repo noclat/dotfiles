@@ -2,7 +2,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Config
 ZSH_THEME="frisk"
-plugins=(git atom thf)
+plugins=(git atom custom)
 
 # System
 export EDITOR="/usr/bin/vim"
@@ -15,4 +15,6 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 alias gt='git status'
 alias go='git checkout'
+alias gh='git hist'
 alias poule='git pull'
+alias php.ini='atom /usr/local/php5/php.d/99-liip-developer.ini'
