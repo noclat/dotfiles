@@ -30,7 +30,7 @@ apache:
 	@ make php
 	@ make mysql
 
-key = "default"
+key = $(shell hostname)
 git:
 	@ make check
 	@ echo "-- Configuring Git:"
@@ -39,7 +39,7 @@ git:
 	@ echo "-- Generating SSH Key:"
 	ssh-keygen -t rsa -b 4096 -C "${email}"
 	ssh-add ~/.ssh/id_rsa
-	pbcopy < ~/.ssh/id_rsa
+	pbcopy < ~/.ssh/id_rsa.pub
 	@ echo "-- Public key copied to clipboard, now pushing to Github:"
 	curl -u "${username}" --data "{\"title\":\"${key}\",\"key\":\"$$(< ~/.ssh/id_rsa.pub)\"}" https://api.github.com/user/keys
 	@ echo "-- Please manually add key to Gitlab: https://gitlab.com/profile/keys."

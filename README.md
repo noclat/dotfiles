@@ -1,23 +1,24 @@
 ## Quick setup
 ```sh
-# Download repo
-curl -LO https://github.com/noclat/mac-env/archive/master.zip && unzip master.zip && rm master.zip
+# 1. Download repo
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/noclat/mac-env/master/install.sh)"
+cd ~/Downloads/mac-env-master
 
-# Download iTerm, Atom, Chrome and Sequel Pro
+# 2. Download iTerm, Atom, Chrome and Sequel Pro
 make apps
 
-# 1. Install Iterm and Atom
-# 2. Open Atom and click "Install Shell Commands"
-# 3. Continue setup
+# 3. Install Iterm and Atom
+# 4. Open Atom and click "Install Shell Commands"
+# 5. Setup environment
 make all username=<username> email=<email>
 ```
 
-Read [Makefile](Makefile) for commands details.
-
-**Note:** it assumes your computer and Github usernames match. If not, run commands separately:
+**Note:** it assumes your computer and Github usernames match. If not, replace step 5 with:
 
 ```sh
 make tools
 make apache username=<username> email=<email> # computer username
 make git username=<username> email=<email> # github username
 ```
+
+Read [Makefile](Makefile) for commands details.
