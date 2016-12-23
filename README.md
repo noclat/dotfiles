@@ -3,9 +3,13 @@
 # Download repo
 curl -LO https://github.com/noclat/mac-env/archive/master.zip && unzip master.zip && rm master.zip
 
-# Setup environment
-make apps # Download iTerm, Atom, Chrome and Sequel Pro
-make all username=<username> email=<email> # full setup
+# Download iTerm, Atom, Chrome and Sequel Pro
+make apps
+
+# 1. Install Iterm and Atom
+# 2. Open Atom and click "Install Shell Commands"
+# 3. Continue setup
+make all username=<username> email=<email>
 ```
 
 Read [Makefile](Makefile) for commands details.
@@ -17,7 +21,3 @@ make tools
 make apache username=<username> email=<email> # computer username
 make git username=<username> email=<email> # github username
 ```
-
-## Misc
-- Double click on [Toggle Hidden Files service](Toggle Hidden Files.workflow) to install.
-- Download and install https://bjango.com/mac/skalacolor/.

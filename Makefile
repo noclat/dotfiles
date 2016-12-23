@@ -7,6 +7,7 @@ apps:
 	( cd ~/Downloads && curl -LO https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg )
 	( cd ~/Downloads && curl -LO https://atom-installer.github.com/v1.12.7/atom-mac.zip )
 	( cd ~/Downloads && curl -LO https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg )
+	( cd ~/Downloads && curl -LO https://s3.amazonaws.com/bjango/files/skalacolor/skalacolor2.10.zip )
 	@ echo "-- Please manually install iTerm and Atom before continuing."
 
 all:
@@ -21,7 +22,6 @@ tools:
 	@ make homebrew
 	@ make watch
 	@ make node
-	@ make xcode
 	@ make atom_config
 	@ make atom_packages
 
@@ -30,6 +30,7 @@ apache:
 	@ make php
 	@ make mysql
 
+key = "default"
 git:
 	@ make check
 	@ echo "-- Configuring Git:"
@@ -40,7 +41,7 @@ git:
 	ssh-add ~/.ssh/id_rsa
 	pbcopy < ~/.ssh/id_rsa
 	@ echo "-- Public key copied to clipboard, now pushing to Github:"
-	curl -u "${username}" --data "{\"title\":\"test-key\",\"key\":\"$$(< ~/.ssh/id_rsa.pub)\"}" https://api.github.com/user/keys
+	curl -u "${username}" --data "{\"title\":\"${key}\",\"key\":\"$$(< ~/.ssh/id_rsa.pub)\"}" https://api.github.com/user/keys
 	@ echo "-- Please manually add key to Gitlab: https://gitlab.com/profile/keys."
 
 check:
@@ -54,7 +55,7 @@ endif
 .PHONY: zsh zsh_plugins zsh_config
 zsh:
 	@ echo "-- Installing Oh My ZSH:"
-	sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+	sh -c "$$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 zsh_plugins:
 	@ echo "-- Installing ZSH plugins:"
@@ -71,19 +72,14 @@ zsh_config:
 
 # System dependencies
 # -------------------
-.PHONY: homebrew watch xcode
+.PHONY: homebrew watch
 homebrew:
 	@ echo "-- Installing Homebrew:"
-	hash brew 2>/dev/null || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	hash brew 2>/dev/null || /usr/bin/ruby -e "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 watch:
 	@ echo "-- Installing watch command:"
 	brew install watch
-	sudo mv /usr/local/Cellar/watch/*/bin/watch /usr/local/bin
-
-xcode:
-	@ echo "-- Looking for XCode Command Line Tools:"
-	@ gcc
 
 
 # Localhost
@@ -124,11 +120,11 @@ node:
 .PHONY: atom_config atom_packages
 atom_config:
 	@ echo "-- Copying Atom config:"
-	cp config.cson ~/.atom/@ echo "-- Done."
+	cp config.cson ~/.atom/
 
 atom_packages:
 	@ echo "-- Installing Atom packages:"
 	apm install auto-detect-indentation
 	apm install color-picker
-	apm install dockblockr
+	apm install docblockr
 	apm install tidy-markdown

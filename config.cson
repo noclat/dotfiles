@@ -26,7 +26,7 @@
     openEmptyEditorOnStart: false
   docblockr: {}
   editor:
-    fontFamily: "Operator Mono"
+    fontFamily: "Operator Mono, Menlo, monospace"
     fontSize: 17
     invisibles: {}
     softTabs: false
