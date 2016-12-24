@@ -1,6 +1,7 @@
 # Toggle Hidden Files
 toggleHiddenFiles() {
 	if [[ `uname` == 'Darwin' ]]
+	then
 		[[ "$(defaults read com.apple.finder AppleShowAllFiles)" == true ]] && local tmp=false || local tmp=true
 		defaults write com.apple.finder AppleShowAllFiles $tmp
 		killall Finder
@@ -23,5 +24,5 @@ rmall() {
 		find . -iname "*~" | xargs rm
 		find ./ -type f | grep Thumbs.db | xargs rm
 	fi
-	success "Temp files (.DS_Store, Thumbs.db, ._*, *~) deleted."
+	echo "Temp files (.DS_Store, Thumbs.db, ._*, *~) deleted."
 }
