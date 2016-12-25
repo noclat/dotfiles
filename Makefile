@@ -107,8 +107,6 @@ php:
 mysql:
 	@ echo "-- Installing MySQL 5.6:"
 	brew install mysql@5.6
-	@ echo "-- Making MyQSL launch on boot:"
-	ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 
 node:
 	@ echo "-- Installing Node.js:"
