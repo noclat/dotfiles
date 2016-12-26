@@ -1,3 +1,9 @@
+ask() { echo $fg[blue]$1$fg[normal] }
+explain() { echo $fg[yellow]$1$fg[normal] }
+success() { echo $fg[green]$1$fg[normal] }
+error() { echo $fg[red]$1$fg[normal] }
+
+
 # Toggle Hidden Files
 toggleHiddenFiles() {
 	if [[ `uname` == 'Darwin' ]]
@@ -24,5 +30,5 @@ rmall() {
 		find . -iname "*~" | xargs rm
 		find ./ -type f | grep Thumbs.db | xargs rm
 	fi
-	echo "Temp files (.DS_Store, Thumbs.db, ._*, *~) deleted."
+	success "Temp files (.DS_Store, Thumbs.db, ._*, *~) deleted."
 }
