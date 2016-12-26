@@ -107,6 +107,9 @@ php:
 mysql:
 	@ echo "-- Installing MySQL 5.6:"
 	brew install mysql@5.6
+	sudo mkdir /var/mysql
+	sudo ln -s /tmp/mysql.sock /var/mysql/mysql.sock
+	sudo chown -R ${username} /usr/local/var/mysql/
 
 node:
 	@ echo "-- Installing Node.js:"
