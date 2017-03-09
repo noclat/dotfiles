@@ -13,6 +13,7 @@ export PATH="$HOME/.npm-packages/bin:$PATH"
 source $ZSH/oh-my-zsh.sh
 
 # Aliases
+alias ll='ls -al'
 alias gt='git status'
 alias go='git checkout'
 alias gh='git hist'
@@ -20,4 +21,4 @@ alias poule='git pull'
 alias php.ini='atom /usr/local/php5/php.d/99-liip-developer.ini'
 
 # Autoload
-hash mysql.server 2>/dev/null && ( mysql.server status || mysql.server start )
+# hash mysql.server 2>/dev/null && ( mysql.server status || mysql.server start )
