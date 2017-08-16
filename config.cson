@@ -19,14 +19,14 @@
       "metrics"
       "linter-coffeescript"
       "open-on-github"
-      "minimap"
       "background-tips"
       "language-coffee-script"
     ]
+    excludeVcsIgnoredPaths: false
     openEmptyEditorOnStart: false
-  docblockr: {}
+    projectHome: "/Users/noclat/Localhost"
   editor:
-    fontFamily: "Operator Mono, Menlo, monospace"
+    fontFamily: "Operator Mono"
     fontSize: 17
     invisibles: {}
     softTabs: false
@@ -38,7 +38,6 @@
   "tidy-markdown":
     ensureFirstHeaderIsH1: false
     runOnSave: false
-  "tree-view":
-    hideVcsIgnoredFiles: false
+  "tree-view": {}
   welcome:
     showOnStartup: false

@@ -1,14 +1,6 @@
 # Global
 # --------------------
-.PHONY: apps all tools apache git check
-apps:
-	@ echo "-- Downloading apps:"
-	( cd ~/Downloads && curl -LO https://iterm2.com/downloads/stable/iTerm2-3_0_12.zip )
-	( cd ~/Downloads && curl -LO https://dl.google.com/chrome/mac/stable/GGRO/googlechrome.dmg )
-	( cd ~/Downloads && curl -LO https://atom-installer.github.com/v1.12.7/atom-mac.zip )
-	( cd ~/Downloads && curl -LO https://github.com/sequelpro/sequelpro/releases/download/release-1.1.2/sequel-pro-1.1.2.dmg )
-	( cd ~/Downloads && curl -LO https://s3.amazonaws.com/bjango/files/skalacolor/skalacolor2.10.zip )
-	@ echo "-- Please manually install iTerm and Atom before continuing."
+.PHONY: all tools apache git check
 
 all:
 	@ make tools
@@ -22,6 +14,7 @@ tools:
 	@ make homebrew
 	@ make watch
 	@ make node
+	@ make yarn
 	@ make atom_config
 	@ make atom_packages
 
@@ -84,7 +77,7 @@ watch:
 
 # Localhost
 # -------------------
-.PHONY: localhost php mysql node
+.PHONY: localhost php mysql node yarn
 localhost:
 	@ make check
 	@ echo "-- Creating ~/Localhost:"
@@ -115,6 +108,9 @@ node:
 	@ echo "-- Installing Node.js:"
 	hash node 2>/dev/null || brew install node
 
+yarn:
+	@ echo "-- Installing Yarn:"
+	hash yarn 2>/dev/null || brew install yarn
 
 # Atom editor
 # -------------------

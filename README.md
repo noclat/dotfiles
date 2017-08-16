@@ -1,15 +1,13 @@
 ## Quick setup
+
 ```sh
-# 1. Download repo
+# 1\. Download repo
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/noclat/mac-env/master/install.sh)"
 cd ~/Downloads/mac-env-master
 
-# 2. Download iTerm, Atom, Chrome and Sequel Pro
-make apps
-
-# 3. Install Iterm and Atom
-# 4. Open Atom and click "Install Shell Commands"
-# 5. Setup environment
+# 2\. Install iTerm and Atom
+# 3\. Open Atom and click "Install Shell Commands"
+# 4\. Setup environment
 make all username=<username> email=<email>
 ```
 
@@ -17,8 +15,28 @@ make all username=<username> email=<email>
 
 ```sh
 make tools
-make apache username=<username> email=<email> # computer username
 make git username=<username> email=<email> # github username
+make apache username=<username> email=<email> # computer username
 ```
 
-Read [Makefile](Makefile) for commands details.
+Read <Makefile> for commands details.
+
+## Apps quick access
+
+- [iTerm 2](https://iterm2.com)
+- [Atom](https://atom.io)
+- [Skala Color](https://bjango.com/mac/skalacolor/)
+- [Sequel Pro](https://www.sequelpro.com/)
+
+## Other config
+
+- iTerm 2 **Dark** theme, **Solarized Dark** colors preset
+- Atom **Operator Mono** font
+- Atom **One Dark** UI and Syntax themes
+- Atom packages:
+
+  - [auto-detect-indentation](https://atom.io/packages/auto-detect-indentation)
+  - [color-picker](https://atom.io/packages/color-picker)
+  - [language-javascript-jsx](https://atom.io/packages/language-javascript-jsx)
+  - [minimap](https://atom.io/packages/minimap)
+  - [tidy-markdown](https://atom.io/packages/tidy-markdown)
