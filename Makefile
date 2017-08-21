@@ -9,7 +9,6 @@ all:
 
 tools:
 	@ make zsh
-	@ make zsh_plugins
 	@ make zsh_config
 	@ make homebrew
 	@ make watch
@@ -45,20 +44,15 @@ endif
 
 # Terminal
 # --------------------
-.PHONY: zsh zsh_plugins zsh_config
+.PHONY: zsh zsh_config
 zsh:
 	@ echo "-- Installing Oh My ZSH:"
 	sh -c "$$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-zsh_plugins:
-	@ echo "-- Installing ZSH plugins:"
-	mkdir -p ~/.oh-my-zsh/plugins/atom
-	curl -o ~/.oh-my-zsh/plugins/atom/atom.plugin.zsh https://raw.githubusercontent.com/semperos/oh-my-zsh/master/plugins/atom/atom.plugin.zsh
-	mkdir -p ~/.oh-my-zsh/plugins/custom
-	cp custom.plugin.zsh ~/.oh-my-zsh/plugins/custom/
-
 zsh_config:
 	@ echo "-- Importing configuration files:"
+	mkdir -p ~/.oh-my-zsh/plugins/custom
+	cp custom.plugin.zsh ~/.oh-my-zsh/plugins/custom/
 	cp {.gitconfig,.zshrc,.vimrc} ~/
 	source ~/.zshrc
 
@@ -123,5 +117,6 @@ atom_packages:
 	@ echo "-- Installing Atom packages:"
 	apm install auto-detect-indentation
 	apm install color-picker
-	apm install docblockr
 	apm install tidy-markdown
+	apm install language-javascript-jsx
+	apm install minimap
