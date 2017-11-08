@@ -1,30 +1,26 @@
 # Global
 # --------------------
-.PHONY: all tools apache git check
+.PHONY: all
 
 all:
-	@ make tools
-	@ make apache
-	@ make git
-
-tools:
 	@ make zsh
 	@ make zsh_config
+	@ make localhost
 	@ make homebrew
+	@ make git
 	@ make watch
 	@ make node
 	@ make yarn
 	@ make atom_config
 	@ make atom_packages
 
-apache:
-	@ make localhost
-	@ make php
-	@ make mysql
 
+# Git
+# --------------------
+.PHONY: git git_check_credentials
 key = $(shell hostname)
 git:
-	@ make check
+	@ make git_check_credentials
 	@ echo "-- Configuring Git:"
 	git config --global user.name ${username}
 	git config --global user.email ${email}
@@ -36,7 +32,7 @@ git:
 	curl -u "${username}" --data "{\"title\":\"${key}\",\"key\":\"$$(< ~/.ssh/id_rsa.pub)\"}" https://api.github.com/user/keys
 	@ echo "-- Please manually add key to Gitlab: https://gitlab.com/profile/keys."
 
-check:
+git_check_credentials:
 ifeq ($(and $(username),$(email)),)
 	@ $(error "Missing arguments username and/or email.")
 endif
@@ -71,32 +67,11 @@ watch:
 
 # Localhost
 # -------------------
-.PHONY: localhost php mysql node yarn
+.PHONY: localhost node yarn
 localhost:
 	@ make check
 	@ echo "-- Creating ~/Localhost:"
 	mkdir -p ~/Localhost
-	@ echo "-- Configuring Apache:"
-	@ sed -i.bak "s/<username>/${username}/g" httpd.conf
-	@ sed -i.bak "s/you@example.com/${email}/g" httpd.conf
-	@ rm httpd.conf.bak
-	sudo cp httpd.conf /etc/apache2/
-	@ echo "-- Restarting Apache:"
-	sudo apachectl restart
-
-php:
-	@ echo "-- Installing PHP 7:"
-	curl -s http://php-osx.liip.ch/install.sh | bash -s 7.0
-	@ echo "-- Setting PHP Timezone:"
-	@ sudo sed -i.bak "s/^.*date\.timezone =.*/date.timezone = \"Europe\/Paris\"/g" /usr/local/php5/php.d/99-liip-developer.ini
-	@ echo "-- Please check if php5_module is commented in /etc/apache2/httpd.conf"
-
-mysql:
-	@ echo "-- Installing MySQL 5.6:"
-	brew install mysql@5.6
-	sudo mkdir /var/mysql
-	sudo ln -s /tmp/mysql.sock /var/mysql/mysql.sock
-	sudo chown -R ${username} /usr/local/var/mysql/
 
 node:
 	@ echo "-- Installing Node.js:"
@@ -105,6 +80,7 @@ node:
 yarn:
 	@ echo "-- Installing Yarn:"
 	hash yarn 2>/dev/null || brew install yarn
+
 
 # Atom editor
 # -------------------
@@ -119,4 +95,4 @@ atom_packages:
 	apm install color-picker
 	apm install tidy-markdown
 	apm install language-javascript-jsx
-	apm install minimap
+	apm install language-json-comments
